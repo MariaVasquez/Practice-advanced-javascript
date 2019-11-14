@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Call Apply Bind</title>
+</head>
+
+<body>
+
+    <ul>
+        <li><button class="call-to-action">Aprender</button></li>
+        <li><button class="call-to-action">Aprender Más</button></li>
+        <li><button class="call-to-action">¡Nunca parar de aprendes!</button></li>
+    </ul>
+    <script>
+        function saludar() {
+            console.log(`Hola soy ${this.name} ${this.apellido}`);
+        }
+
+        const katerin = {
+            name: "Katerin",
+            apellido: "Arbelaez"
+        }
+
+        saludar.call(katerin);
+
+        function caminar(metros, direccion) {
+            console.log(`${this.name} camina ${metros} metros hacia ${direccion}`);
+        }
+        // call - comas
+        caminar.call(katerin, 400, 'norte');
+
+        //apply - arreglos
+        const valores = [800, 'noreste']
+        caminar.apply(katerin, valores);
+
+        // bin
+        const daniela = { name: "Daniela", apellido: "Vergara" };
+        const danielaSaluda = saludar.bind(daniela);
+        danielaSaluda();
+
+        const danielaCamina = caminar.bind(daniela, 1000);
+        danielaCamina('este');
+
+        const buttons = document.getElementsByClassName('call-to-action');
+        Array.prototype.forEach.call(buttons,buton =>{
+            buton.onclick = ()=> alert("Hola");
+        });
+    </script>
+</body>
+
+</html>
